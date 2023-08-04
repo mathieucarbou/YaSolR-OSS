@@ -1,0 +1,5 @@
+- https://www.bristolwatch.com/ele2/zcnew.htm
+- https://www.electronics-lab.com/project/ac-voltage-zero-cross-detector/
+- https://www.pcbway.com/project/shareproject/120_220VAC_Opto_Isolated_Zero_Cross_Detector_Module_for_DIN_Rail_Carrier_Mount_w_57a9f83e.html
+- https://dextrel.net/dextrel-start-page/design-ideas-2/mains-zero-crossing-detector
+- https://www.pcbway.com/project/shareproject/120_220VAC_Opto_Isolated_Zero_Cross_Detector_Module_for_DIN_Rail_Carrier_Mount_w_57a9f83e.html

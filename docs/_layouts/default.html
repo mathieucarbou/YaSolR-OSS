@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US" }}">
+
+<head>
+  <meta charset="UTF-8">
+
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style"
+    type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  {% include head-custom.html %}
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+  <header class="page-header" role="banner">
+    <div id="google_translate_element"></div>
+    <h1 class="project-name">
+      <div>
+        <a href="/">
+          <img src="/assets/img/logo.png" alt="{{ site.title }}" title="{{ site.title }}"></img>
+        </a>
+      </div>
+    </h1>
+    <p class="page-description">{{ site.description }}</p>
+    <div class="project-tagline">
+      <a class="btn btn-small {% if page.title == 'Home' %}active{% endif %}" href="/">Home</a>
+      <a class="btn btn-small {% if page.title == 'Overview' %}active{% endif %}" href="overview">Overview</a>
+      <a class="btn btn-small {% if page.title == 'Build' %}active{% endif %}" href="build">Build</a>
+      <a class="btn btn-small {% if page.title == 'Manual' %}active{% endif %}" href="manual">Manual</a>
+      <a class="btn btn-small {% if page.title == 'HTTP API' %}active{% endif %}" href="http">HTTP</a>
+      <a class="btn btn-small {% if page.title == 'MQTT API' %}active{% endif %}" href="mqtt">MQTT</a>
+      <a class="btn btn-small {% if page.title == 'Download' %}active{% endif %}" href="download">Download</a>
+      <a class="btn btn-small {% if page.title == 'Buy' %}active{% endif %}" href="buy">Buy</a>
+    </div>
+  </header>
+
+  <main id="content" class="main-content" role="main">
+    {{ content }}
+
+    <footer class="site-footer">
+      <span class="site-footer-comments">
+        <script src="https://giscus.app/client.js" data-repo="mathieucarbou/YaSolR-OSS" data-repo-id="R_kgDOKubA2w"
+          data-category="Website comments" data-category-id="DIC_kwDOKubA284Cbr4P" data-mapping="pathname"
+          data-strict="1" data-reactions-enabled="0" data-emit-metadata="0" data-input-position="top" data-theme="light"
+          data-lang="en" crossorigin="anonymous" async>
+          </script>
+      </span>
+      <span class="site-footer site-footer-owner">
+        Copyright © {{ site.time | date: '%Y' }} <a href="{{ site.github.owner_url }}">Mathieu Carbou</a><br>
+        Last update: {{ site.time }}<br>
+        Creator and maintainer of <a href="https://github.com/mathieucarbou/YaSolR-Pro">YaS☀️lR Pro</a> and <a
+          href="https://github.com/mathieucarbou/YaSolR-OSS">YaS☀️lR OSS</a> projects on GitHub.<br />
+        Help and Support: <a href="https://www.facebook.com/groups/yasolr">Facebook Group</a> | <a
+          href="https://github.com/mathieucarbou/YaSolR-OSS/discussions">GitHub Discussions</a> | <a
+          href="https://github.com/mathieucarbou/YaSolR-OSS/issues">GitHub Issues</a>
+      </span>
+    </footer>
+  </main>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en' },
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+</body>
+
+</html>
