@@ -189,7 +189,6 @@ http://192.168.125.92/script/1/status
     "output": 0,
     "error": 0,
     "dError": 0,
-    "errorSum": 0,
     "pTerm": 0,
     "iTerm": 0,
     "dTerm": 0

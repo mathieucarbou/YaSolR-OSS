@@ -53,8 +53,6 @@ let PID = {
   error: 0,
   // difference between current and last error
   dError: 0,
-  // sum of all errors, clamped to minimum output
-  errorSum: 0,
   // Proportional Term
   pTerm: 0,
   // Integral Term
@@ -105,9 +103,8 @@ function calculatePID(input) {
   PID.input = input;
   const error = CONFIG.PID.SET_POINT - PID.input;
   PID.dError = input === CONFIG.PID.SET_POINT ? 0 : error - PID.error;
-  PID.errorSum = input === CONFIG.PID.SET_POINT ? 0 : Math.max(PID.errorSum + error, CONFIG.PID.OUTPUT_MIN);
   PID.pTerm = error * CONFIG.PID.KP;
-  PID.iTerm = PID.errorSum * CONFIG.PID.KI;
+  PID.iTerm = input === CONFIG.PID.SET_POINT ? 0 : Math.max(PID.iTerm + error * CONFIG.PID.KI, CONFIG.PID.OUTPUT_MIN);
   PID.dTerm = PID.dError * CONFIG.PID.KD;
   PID.error = error;
   PID.output = PID.pTerm + PID.iTerm + PID.dTerm;
@@ -161,7 +158,7 @@ function divert(voltage, gridPower) {
   DIVERT.divertPower = Math.max(0, DIVERT.divertPower + correction);
 
   if (CONFIG.DEBUG > 0)
-    print(scriptName, ":", "Grid:", voltage, "V", gridPower, "W. Correction:", correction, "W. Total Divert Power:", DIVERT.divertPower, "W");
+    print(scriptName, ":", "Grid:", voltage, "V,", gridPower, "W. Correction:", correction, "W. Total Divert Power:", DIVERT.divertPower, "W");
 
   let remaining = DIVERT.divertPower;
 
