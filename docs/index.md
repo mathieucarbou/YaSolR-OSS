@@ -22,18 +22,18 @@ But this website will help you pick and build your router.
 YaSolR is one of the **most optimized and powerful** Solar Router firmware available:
 
 - **12-bits resolution** with linear interpolation for a precise TRIAC control
-- **Up to 25 measurements / second** with a local JSY
-- **Up to 20 measurements / second** with a remote JSY
+- **3-Phase** support
+- **Custom dimmer library** optimized for ESP32 (🚧)
+- **Dimmer range remapping** like Shelly Dimmers
+- **Frequency auto-detection** (support any frequency: not only 50/60Hz)
+- **Harmonics** can be lowered to comply with regulations thanks to several settings
 - **PID Controller** optimized and customizable
 - **PID Tuning** web interface
-- **RMT Peripheral** used for DS18 readings
-- **Harmonics** can be lowered to comply with regulations thanks to several settings
-- **Custom dimmer library** optimized for ESP32 (🚧)
-- **MCPWM** (Motor Control Pulse Width Modulator) for phase control (🚧)
-- **3-Phase** support
-- **Precise Zero-Cross Detection with ZC pulse analysis**
-- **Dimmer range remapping** like Shelly Dimmers
 - **Precise Power Calibration**
+- **Precise Zero-Cross Detection with ZC pulse analysis**
+- **RMT Peripheral** used for DS18 readings
+- **Up to 20 measurements / second** with a remote JSY
+- **Up to 25 measurements / second** with a local JSY
 
 This is a big **Open-Source** project following **best development practices**.
 YaSolR is:
@@ -42,7 +42,7 @@ YaSolR is:
 - **easy to use** with one of the **best easy-to-use and responsive Web Interface**, **REST** API and **MQTT** API
 - compatible with **Home Assistant** and other home automation systems (Auto Discovery)
 - compatible with **EV Charging Box** like OpenEVSE
-- compatible with **110/230V 50/60Hz**
+- compatible with **110/230V, at any frequency: not only 50/60Hz**
 - compatible with **remote** dimmer, relay, temperature, measurement (**ESP-Now** / **UDP**)
 - compatible with **many hardware components**:
   - ESP32 Dev Kit
@@ -240,26 +240,21 @@ Thanks to power measurement, the router also provides these features:
 
 OSS and Pro firmware are the same, except that the PRO version relies on commercial (paid) libraries and provides some additional features based on a better dashboard.
 
-**The Pro version is only 25 euros** and gives access to all the perks of the Pro version below:
+**The Pro version is only 20 euros** and gives access to all the perks of the Pro version below:
 
-| Feature                          |                            OSS (Free)                            |                                                                                              PRO (Paid)                                                                                              |
-| -------------------------------- | :--------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Dashboard                        |                        Overview **only**                         |                                                                              Full Dashboard as seen in the screenshots                                                                               |
-| Manual Dimmer Control            |              Home Assistant<br>MQTT API<br>REST API              |                                                                     **From Dashboard**<br>Home Assistant<br>MQTT API<br>REST API                                                                     |
-| Manual Bypass Control            |              Home Assistant<br>MQTT API<br>REST API              |                                                                     **From Dashboard**<br>Home Assistant<br>MQTT API<br>REST API                                                                     |
-| Manual Relay Control             |              Home Assistant<br>MQTT API<br>REST API              |                                                                     **From Dashboard**<br>Home Assistant<br>MQTT API<br>REST API                                                                     |
-| Configuration                    |                        Debug Config Page                         |                                                                               **From Dashboard**<br>Debug Config Page                                                                                |
-| Automatic Resistance Calibration |                                ❌                                |                                                                                                  ✅                                                                                                  |
-| Energy Reset                     |                                ❌                                |                                                                                                  ✅                                                                                                  |
-| GPIO Config and Health           |                                ❌                                |                                                                                                  ✅                                                                                                  |
-| Hardware Config and Health       |                                ❌                                |                                                                                                  ✅                                                                                                  |
-| Output Statistics                |                                ❌                                |                                                                                                  ✅                                                                                                  |
-| PID Tuning View                  |                                ❌                                |                                                                                                  ✅                                                                                                  |
-| PZEM Pairing                     |                                ❌                                |                                                                                                  ✅                                                                                                  |
-| Help & Support                   |     [Facebook Group](https://www.facebook.com/groups/yasolr)     | [Facebook Group](https://www.facebook.com/groups/yasolr) <br> [Forum](https://github.com/mathieucarbou/YaSolR-OSS/discussions) <br> [Bug Report](https://github.com/mathieucarbou/YaSolR-OSS/issues) |
-| Web Console                      | [WebSerial Lite](https://github.com/mathieucarbou/WebSerialLite) |                                                                              [WebSerial Pro](https://www.webserial.pro)                                                                              |
-| Dashboard                        |      [ESP-DASH](https://github.com/ayushsharma82/ESP-DASH)       |                                                                                 [ESP-DASH Pro](https://espdash.pro)                                                                                  |
-| OTA Firmware Update              |    [ElegantOTA](https://github.com/ayushsharma82/ElegantOTA)     |                                                                               [ElegantOTA Pro](https://elegantota.pro)                                                                               |
+| Feature                    |                            OSS (Free)                            |                                                                                              PRO (Paid)                                                                                              |
+| -------------------------- | :--------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Dashboard                  |                        Overview **only**                         |                                                                              Full Dashboard as seen in the screenshots                                                                               |
+| Configuration              |                        Debug Config Page                         |                                                                               **From Dashboard**<br>Debug Config Page                                                                                |
+| Energy Reset               |                                ❌                                |                                                                                                  ✅                                                                                                  |
+| GPIO Config and Health     |                                ❌                                |                                                                                                  ✅                                                                                                  |
+| Hardware Config and Health |                                ❌                                |                                                                                                  ✅                                                                                                  |
+| Output Statistics          |                                ❌                                |                                                                                                  ✅                                                                                                  |
+| PID Tuning View            |                                ❌                                |                                                                                                  ✅                                                                                                  |
+| Help & Support             |     [Facebook Group](https://www.facebook.com/groups/yasolr)     | [Facebook Group](https://www.facebook.com/groups/yasolr) <br> [Forum](https://github.com/mathieucarbou/YaSolR/discussions) <br> [Bug Report](https://github.com/mathieucarbou/YaSolR/issues) |
+| Web Console                | [WebSerial Lite](https://github.com/mathieucarbou/WebSerialLite) |                                                                              [WebSerial Pro](https://www.webserial.pro)                                                                              |
+| Dashboard                  |      [ESP-DASH](https://github.com/ayushsharma82/ESP-DASH)       |                                                                                 [ESP-DASH Pro](https://espdash.pro)                                                                                  |
+| OTA Firmware Update        |    [ElegantOTA](https://github.com/ayushsharma82/ElegantOTA)     |                                                                               [ElegantOTA Pro](https://elegantota.pro)                                                                               |
 
 The money helps funding the hardware necessary to test and develop the firmware.
 

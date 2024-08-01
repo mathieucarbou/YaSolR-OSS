@@ -101,7 +101,7 @@ With [Espressif Flash Tool](https://www.espressif.com/en/support/download/other-
 > ##### IMPORTANT
 >
 > Be careful to not forget the `0`
-> {: .block-important }
+{: .block-important }
 
 ![Espressif Flash Tool](assets/img/screenshots/Espressif_Flash_Tool.png)
 
@@ -110,7 +110,7 @@ With [Espressif Flash Tool](https://www.espressif.com/en/support/download/other-
 > ##### TIP
 >
 > Captive Portal and Access Point address: [http://192.168.4.1/](http://192.168.4.1/)
-> {: .block-tip }
+{: .block-tip }
 
 A captive portal (Access Point) is started for the first time to configure the WiFi network, or when the application starts and cannot join an already configured WiFi network fro 15 seconds.
 
@@ -179,9 +179,17 @@ The firmware file which must be used is the one ending with `.OTA.bin`:
 The overview section shows some global information about the router:
 
 - The temperature is coming from the sensor installed in the router box
-- A JSY or PZEM is required to see the measurements
+- The electricity measurements are coming from a JSY or PZEM
 
 [![](assets/img/screenshots/overview.jpeg)](assets/img/screenshots/overview.jpeg)
+
+> ##### IMPORTANT
+>
+> The resistance value that you see in the overview page is an estimation of the global resistance value corresponding to output 1 and output 2 combined together, 
+> and this value is measured by a JSY or PZEM when routing.
+> 
+> This is **not** the resistance value calibrated for each output in the `Hardware Config` section.
+{: .block-important }
 
 ### `Output` sections
 
@@ -211,7 +219,7 @@ The output sections show the state of the outputs and the possibility to control
 > ##### IMPORTANT
 >
 > A PZEM is required to see the measurements of each outputs.
-> {: .block-important }
+{: .block-important }
 
 **Dimmer Control:**
 
@@ -244,7 +252,7 @@ The following settings are visible if `Bypass Automatic Control` is activated.
 > ##### TIP
 >
 > All these settings are applied immediately and do not require a restart
-> {: .block-tip }
+{: .block-tip }
 
 ### `Relays` section
 
@@ -328,7 +336,7 @@ Make sure the computer won't g oto sleep!
 > ##### IMPORTANT
 >
 > MQTT must be restarted to apply the changes.
-> {: .block-important }
+{: .block-important }
 
 #### MQTT as a Grid Source
 
@@ -342,7 +350,7 @@ Make sure the computer won't g oto sleep!
 > ##### IMPORTANT
 >
 > The ESP32 must be restarted to apply the changes.
-> {: .block-important }
+{: .block-important }
 
 MQTT topics are less accurate because depend on the refresh rate of this topic, and an expiration delay of a few seconds is set in order to stop any routing if no update is received in time.
 Also, there is **1 minute expiration delay** after which the values will be considered as invalid.
@@ -361,7 +369,7 @@ So this is important to make sure that the topic will be refreshed, otherwise fe
 > ##### IMPORTANT
 >
 > The ESP32 must be restarted to apply the changes.
-> {: .block-important }
+{: .block-important }
 
 #### Home Assistant Discovery
 
@@ -377,7 +385,7 @@ YaSolR supports Home Assistant Discovery: if configured, it will **automatically
 > ##### IMPORTANT
 >
 > MQTT must be restarted to apply the changes.
-> {: .block-important }
+{: .block-important }
 
 The complete reference of the published data in MQTT is available [here](mqtt).
 The published data can be explored with [MQTT Explorer](https://mqtt-explorer.com/).
@@ -429,7 +437,7 @@ It perfectly OK for a ZCD, but you cannot use a pin that can only be read for a 
 > ##### IMPORTANT
 >
 > If you change one of these settings, please stop and restart the corresponding Hardware.
-> {: .block-important }
+{: .block-important }
 
 ### `Hardware` section
 
@@ -446,7 +454,7 @@ All these components are activated **live without the need to restart the router
 >
 > - `Relay 1` / `Relay 2`: these are the SSR or Electromechanical relays connected to the ESP32 and used to control external loads.
 >   Only activate if you have connected some relays to be used for external loads.
->   {: .block-note }
+{: .block-note }
 
 ### `Hardware Config` section
 
@@ -457,18 +465,22 @@ This section allows to further configure some hardware settings and calibrate th
 > ##### IMPORTANT
 >
 > If you change one of these settings in the hardware section, please restart the corresponding hardware or the YaSolR device.
-> {: .block-important }
+{: .block-important }
 
 #### Grid Frequency
 
 - `Nominal Grid Frequency`: the nominal grid frequency.
+
+`Auto-detect` will automatically detect the grid frequency based on the connected measurement devices, or remote ones, or thanks to the pulse analyzer.
+It is recommended to leave the setting to `Auto-detect` unless you have a good reason to force it.
+The reason is that the grid utility frequency can change for example from 50Hz to 51Hz after a power failure in case a generator is installed.
 
 #### Dimmer Range Remapping
 
 > ##### DANGER
 >
 > For advanced users only.
-> {: .block-danger }
+{: .block-danger }
 
 - `Output 1 Dimmer Min/Max Remapping`
 - `Output 2 Dimmer Min/Max Remapping`
@@ -487,7 +499,7 @@ For example, if you set the range to `10-80%, then the new 0 will match a duty c
 > A good start is to find the triggering voltage of the voltage regulator (usually around 1V) and the maximum voltage (usually around 8V) which matches 100%.
 > This is usually written in the specifications of the voltage regulator.
 > Then remap the dimmer ranges to match these values like the example above.
-> {: .block-tip }
+{: .block-tip }
 
 #### Display
 
@@ -529,7 +541,7 @@ You must use a SSR for that, because the relay will be switched on and off frequ
 > ##### NOTE
 >
 > Remember that the voltage is not dimmed: these are 2 normal relays
-> {: .block-note }
+{: .block-note }
 
 > ##### WARNING
 >
@@ -538,7 +550,7 @@ You must use a SSR for that, because the relay will be switched on and off frequ
 > If you need to switch other types of load in a more complex way with some hysteresis or other complex conditions, you can use the MQTT, REST API, Home Assistant or Jeedom to query the `Virtual Power` metric and execute an automation based on this value.
 > The automation can then control the router relays remotely. The relays need to be set in `Manual Control`.
 > Remember that these relays are not power contactors and should not be used to directly control high power loads like an Electric Vehicle charge, a pump, etc.
-> {: .block-warning }
+{: .block-warning }
 
 > ##### TIP
 >
@@ -547,7 +559,7 @@ You must use a SSR for that, because the relay will be switched on and off frequ
 > - **For an EV charge control**: see [Virtual Grid Power / Compatibility with EV box](#virtual-grid-power--compatibility-with-ev-box)
 >
 > - **For a pump**: a contactor is recommended which can be coupled with a Shelly EM to activate / deactivate the contactor remotely, and it can be automated by Home Assistant or Jeedom based on the `Virtual Power` metric of this router, but also the hours of day, days of week, depending on the weather, and of course with some hysteresis and safety mechanisms to force the pump ON or OFF depending on some rules.
->   {: .block-tip }
+{: .block-tip }
 
 **Rules of Automatic Switching**
 
@@ -652,7 +664,7 @@ You can read more at:
 > ##### DANGER
 >
 > For advanced users only.
-> {: .block-danger }
+{: .block-danger }
 
 This page allows to tune the PID algorithm used to control the automatic routing.
 Use only if you know what you are doing and know how to tweak a PID controller.
@@ -675,7 +687,7 @@ To reset the other values to their default value, just click on the validate / e
 > ##### TIP
 >
 > If you find better settings, please do not hesitate to share them with the community.
-> {: .block-tip }
+{: .block-tip }
 
 [![](assets/img/screenshots/pid_tuning.jpeg)](assets/img/screenshots/pid_tuning.jpeg)
 
@@ -687,7 +699,7 @@ To reset the other values to their default value, just click on the validate / e
 > - Do not leave `Real-time Data` option always activated because the data flow is so high that it impacts the ESP32 performance.
 >
 > - you are supposed to know how to tune a PID controller. If not, please research on Google.
->   {: .block-important }
+{: .block-important }
 
 Here are some basic links to start with, which talks about the code used under the hood:
 
@@ -782,7 +794,7 @@ When using a remote JSY with the router, the following rules apply:
 >
 > JSY Remote app is automatically detected on the same network: you don't need to configure anything.
 > As soon as the Sender app will start sending data, YaSolR will receive it and display it.
-> {: .block-tip }
+{: .block-tip }
 
 ### LEDs
 
@@ -831,25 +843,42 @@ So the router will take whatever is not used by the EV box.
 The Zero-Cross Detection (ZCD) module is used to detect the zero-crossing of the grid voltage.
 It is required, whether you use a Robodyn or SSR or any routing algorithm (phase control or burst mode).
 
+When activating `Zero-Cross Detection` in the hardware page, YaSolR will first start a pulse analyzer to grab some statistics about the pulse characteristics: period and length.
+This characteristics are used to fine-tune the TRIAC firing and they can be viewed in the dashboard, in the statistics section:
+
+- `ZCD: Pulse Length` (will depends on your ZCD module)
+- `ZCD: Pulse Period` (should be around 10ms for 50Hz and 8ms for 60Hz)
+
+Once the pulse analysis if finished (it should last around 1 second), the ZCD module will be activated and the router will start routing.
+
+Note that if the electricity is not available when YaSolR starts, the pulse analyser will wait until the electricity is back to start the pulse analysis and then activate the ZCD module.
+
 > ##### TIP
 >
 > The Robodyn includes a ZCD (its ZC pin).
 > Do not forget to activate the ZCD module in the `Hardware` section.
-> {: .block-tip }
+{: .block-tip }
 
-You can also use a dedicated ZCD module like the one suggested on this website (build menu).
+> ##### IMPORTANT
+>
+> Robodyn has a very bad ZCD circuit. I strongly suggest you use a dedicated ZCD module instead.
+> Please have a look at these blog articles on YaSolR website for more information:
+>
+> - [2024-07-24 - The Importance of a good ZCD circuit](./blog/2024-07-24_the_importance_of_a_good_zcd_circuit)
+> - [2024-07-31 - Zero-Cross Pulse Detection](./blog/2024-07-31_zero-cross_pulse_detection)
+{: .block-important }
 
 > ##### IMPORTANT
 >
 > `Virtual Grid Power` requires a PZEM or JSY in place to measure the routed power.
-> {: .block-important }
+{: .block-important }
 
 ## Help and support
 
 - **Facebook Group**: [https://www.facebook.com/groups/yasolr](https://www.facebook.com/groups/yasolr)
 
-- **GitHub Discussions**: [https://github.com/mathieucarbou/YaSolR-OSS/discussions](https://github.com/mathieucarbou/YaSolR-OSS/discussions)
+- **GitHub Discussions**: [https://github.com/mathieucarbou/YaSolR/discussions](https://github.com/mathieucarbou/YaSolR/discussions)
 
-- **GitHub Issues**: [https://github.com/mathieucarbou/YaSolR-OSS/issues](https://github.com/mathieucarbou/YaSolR-OSS/issues)
+- **GitHub Issues**: [https://github.com/mathieucarbou/YaSolR/issues](https://github.com/mathieucarbou/YaSolR/issues)
 
 - **ESP32 Exception Decoder**: [https://maximeborges.github.io/esp-stacktrace-decoder/](https://maximeborges.github.io/esp-stacktrace-decoder/)

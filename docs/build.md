@@ -350,6 +350,8 @@ Links are provided for reference only, you can find them on other websites.
 | <img src="./assets/img/hardware/ZCD.jpeg" style="width:150px">   | [ZCD module from Daniel S.](https://www.pcbway.com/project/shareproject/Zero_Cross_Detector_a707a878.html) and its [DIN Rail support](https://fr.aliexpress.com/item/32276247838.html) |
 | <img src="./assets/img/hardware/ZCD_2.jpeg" style="width:150px"> | [ZCD module from Rajkumar S](https://www.electronics-lab.com/project/ac-voltage-zero-cross-detector/)                                                                                  |
 
+If you have access to a 3D printer, you can also [print the DIN Rail mounts](https://www.thingiverse.com/thing:4185585).
+
 **Other SSR:**
 
 - [Zero-Cross SSR DA](https://fr.aliexpress.com/item/1005002297502716.html)

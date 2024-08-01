@@ -356,5 +356,5 @@ The Shelly Dimmer Gen 3 with the Shelly Addon are in the black enclosure, the vo
 ## Help and Support
 
 - [Forum photovoltaïque](https://forum-photovoltaique.fr/viewtopic.php?t=72838)
-- [Discussions](https://github.com/mathieucarbou/YaSolR-OSS/discussions) (on GitHub)
-- [Issues](https://github.com/mathieucarbou/YaSolR-OSS/issues) (on GitHub)
+- [Discussions](https://github.com/mathieucarbou/YaSolR/discussions) (on GitHub)
+- [Issues](https://github.com/mathieucarbou/YaSolR/issues) (on GitHub)

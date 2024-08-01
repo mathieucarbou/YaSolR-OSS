@@ -50,23 +50,23 @@ $hr-border-color: #eff0f1 !default;
       background-color: darken($header-menu-bg-color, 20%);
       border-color: $header-bg-color-secondary;
     }
-  
+
     .btn:hover {
       box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
-  
+
     .btn-small {
       padding: 5px 10px 5px 10px;
       color: $header-heading-color;
       background-color: darken($header-menu-bg-color, 20%);
       border-color: $header-bg-color-secondary;
     }
-  
-    .btn-small + .btn-small {
+
+    .btn-small+.btn-small {
       //margin-left: 0.5rem;
       margin-left: 0;
     }
-  
+
     .btn-small:hover {
       box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
@@ -100,8 +100,25 @@ input.task-list-item-checkbox {
   margin-right: 7px;
 }
 
-.site-footer-owner {
+.site-footer {
   font-weight: normal;
+  padding-top: 1rem;
+  margin-top: 1rem;
+
+  table {
+    width: 100%;
+
+    tbody {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    td {
+      padding: 0;
+      padding-right: 5px;
+      border: 0;
+    }
+  }
 }
 
 @media screen and (max-width: 730px) {
@@ -144,7 +161,8 @@ input.task-list-item-checkbox {
 }
 
 /* Tips, warnings, and dangers */
-blockquote, .main-content blockquote {
+blockquote,
+.main-content blockquote {
   padding: 0.5rem 1rem;
 
   &.block-tip {

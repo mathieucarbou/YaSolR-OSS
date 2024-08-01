@@ -1,4 +1,4 @@
-#define Version "11.16"
+#define Version "11.17"
 #define HOSTNAME "RMS-ESP32-"
 #define CLE_Rom_Init 912567899  //Valeur pour tester si ROM vierge ou pas. Un changement de valeur remet à zéro toutes les données. / Value to test whether blank ROM or not.
 
@@ -65,6 +65,9 @@
     Correction bug sur export des paramètres
   - V11.16
     Modification pour pouvoir faire des imports de paramètres avec Firefox
+  - V11.17
+    Compilation avec la nouvelle version 3.03 de la carte ESP32
+    Arrêt routage si température non valide
               
   
   Les détails sont disponibles sur / Details are available here:
@@ -1011,7 +1014,7 @@ void GestionOverproduction() {
     Actif[i] = LesActions[i].Actif;                                                       //0=Inactif,1=Decoupe ou On/Off, 2=Multi, 3= Train
     if (Actif[i] >= 2) lissage = true;                                                    //En RAM
     Type_En_Cours = LesActions[i].TypeEnCours(HeureCouranteDeci, temperature, LTARFbin);  //0=NO,1=OFF,2=ON,3=PW,4=Triac
-    if (Actif[i] > 0 && Type_En_Cours > 1 && DATEvalid) {                                 // On ne traite plus le NO
+    if (Actif[i] > 0 && Type_En_Cours > 1 && DATEvalid && (Source_Temp == "tempNo" || TemperatureValide > 0) ) {                                 // On ne traite plus le NO
       if (Type_En_Cours == 2) {
         RetardF[i] = 0;
       } else {  // 3 ou 4
