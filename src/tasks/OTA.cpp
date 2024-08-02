@@ -13,7 +13,7 @@ Mycila::Task otaTask("OTA", Mycila::TaskType::ONCE, [](void* params) {
   bypassRelayO2.end();
   relay1.end();
   relay2.end();
-  zcd.end();
+  Mycila::Dimmer::endZCD();
   // stop blocking I/O tasks
   mqtt.end();
   udp.close();

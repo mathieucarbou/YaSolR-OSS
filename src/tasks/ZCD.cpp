@@ -44,9 +44,9 @@ Mycila::Task zcdTask("ZCD", [](void* params) {
 
   // if the user is asking to disable ZCD, and it is starting or running, we stop it
   if (!zcdSwitchedOn) {
-    if (zcd.isEnabled() || analyzerState != Mycila::PulseAnalyzer::State::IDLE) {
+    if (Mycila::Dimmer::isZCDEnabled() || analyzerState != Mycila::PulseAnalyzer::State::IDLE) {
       logger.warn(TAG, "ZCD disabled, stopping ZCD and PulseAnalyzer");
-      zcd.end();
+      Mycila::Dimmer::endZCD();
       pulseAnalyzer.end();
     }
     return;
@@ -56,7 +56,7 @@ Mycila::Task zcdTask("ZCD", [](void* params) {
     // ZCD switched on, and no analysis is in progress, we start a new one if ZCD is not enabled yet
     // Otherwise if ZCD switch is on and ZCD is enabled, system is running and we do nothing
     case Mycila::PulseAnalyzer::State::IDLE:
-      if (!zcd.isEnabled()) {
+      if (!Mycila::Dimmer::isZCDEnabled()) {
         logger.info(TAG, "ZCD enabled, starting PulseAnalyzer");
         pulseAnalyzer.record(config.get(KEY_PIN_ZCD).toInt());
       }
@@ -84,8 +84,8 @@ Mycila::Task zcdTask("ZCD", [](void* params) {
         delay = 0;
       }
 
-      zcd.begin(config.get(KEY_PIN_ZCD).toInt(), semiPeriod);
-      if (zcd.isEnabled()) {
+      Mycila::Dimmer::beginZCD(config.get(KEY_PIN_ZCD).toInt(), semiPeriod, delay / 2);
+      if (Mycila::Dimmer::isZCDEnabled()) {
         logger.info(TAG, "ZCD started");
         dimmer1Task.resume();
         dimmer2Task.resume();
